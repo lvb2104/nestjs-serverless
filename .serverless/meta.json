@@ -1,0 +1,99 @@
+{
+  "/home/moda/Documents/nestjs-serverless/serverless.yaml": {
+    "versionFramework": "4.9.1",
+    "servicePath": "/home/moda/Documents/nestjs-serverless/serverless.yaml",
+    "serviceConfigFileName": "serverless.yaml",
+    "service": {
+      "service": "nestjs-serverless",
+      "useDotenv": true,
+      "plugins": [
+        "serverless-offline"
+      ],
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs22.x",
+        "environment": {
+          "PORT": "3002"
+        },
+        "stage": "prod",
+        "region": "us-east-1",
+        "versionFunctions": true
+      },
+      "functions": {
+        "main": {
+          "handler": "dist/serverless.handler",
+          "events": [
+            {
+              "http": {
+                "method": "ANY",
+                "path": "/"
+              }
+            },
+            {
+              "http": {
+                "method": "ANY",
+                "path": "{proxy+}"
+              }
+            }
+          ],
+          "name": "nestjs-serverless-prod-main"
+        }
+      }
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs22.x",
+      "environment": {
+        "PORT": "3002"
+      },
+      "stage": "prod",
+      "region": "us-east-1",
+      "versionFunctions": true
+    },
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "serviceRawFile": "service: nestjs-serverless\n\nuseDotenv: true\n\nplugins:\n  - serverless-offline\n\nprovider:\n  name: aws\n  runtime: nodejs22.x\n  environment:\n    PORT: ${env:PORT}\n\nfunctions:\n  main:\n    handler: dist/serverless.handler\n    events:\n      - http:\n          method: ANY\n          path: /\n      - http:\n          method: ANY\n          path: '{proxy+}'",
+    "command": [
+      "remove"
+    ],
+    "options": {
+      "stage": "prod"
+    },
+    "orgId": "e56b3572-111a-432e-b57b-918137e0b94f",
+    "orgName": "mystartup",
+    "userId": "Cjtf0N6py9K0z2B3Q7",
+    "userName": "mystartup",
+    "serviceProviderAwsAccountId": "615299735013",
+    "serviceProviderAwsCfStackName": "nestjs-serverless-prod",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:615299735013:stack/nestjs-serverless-prod/cd1caeb0-09f2-11f0-88d0-0ea1974251e9",
+    "serviceProviderAwsCfStackCreated": "2025-03-26T03:31:27.784Z",
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "MainLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:615299735013:function:nestjs-serverless-prod-main:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-nestjs-serverless-prod-MainLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ServiceEndpoint",
+        "OutputValue": "https://ql1aivoqn5.execute-api.us-east-1.amazonaws.com/prod",
+        "Description": "URL of the service endpoint",
+        "ExportName": "sls-nestjs-serverless-prod-ServiceEndpoint"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "serverless-framework-deployments-us-east-1-3bdf1e7a-f419",
+        "ExportName": "sls-nestjs-serverless-prod-ServerlessDeploymentBucketName"
+      }
+    ]
+  }
+}
